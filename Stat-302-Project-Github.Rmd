@@ -1,5 +1,5 @@
 ---
-title: "Repo version stats project"
+title: "Stat-302 Project (GitHub)"
 author: "Miles Matthews"
 date: "2024-01-02"
 output: html_document

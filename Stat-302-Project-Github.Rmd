@@ -11,9 +11,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 library(tidyverse)
-#library(gmodels)
-#library(Sleuth3)
-#library(DescTools)
 ```
 
 ### Importing data
@@ -22,13 +19,13 @@ library(tidyverse)
 CollegeDistance <- read.csv("CollegeDistance.csv")
 ```
 
-## Some two way relationships between variables
+## Some two-way relationships between variables
 
 ### Gender and distance:
 
-#### Checking variables
+#### Checking variables:
 
-Checking what variables are in gender
+Checking what values are in the gender variable:
 
 ```{r}
 unique(CollegeDistance$gender)
@@ -56,7 +53,7 @@ It appears that the relationship between distance and gender is roughly the same
 
 ### Income and distance:
 
-Checking what variables are present in income.
+Checking what values are in the income variable:
 
 ```{r}
 unique(CollegeDistance$income)
@@ -71,7 +68,7 @@ ggplot(data = CollegeDistance, mapping = aes(income, log(distance)))+
   geom_boxplot()
 ```
 
-Once again, the relationships between income and distance look roughly the same between different income levels, however the distance for low income students appears to have more variability. There might be one outlier in the log of distance for high income students.
+Once again, the relationships between income and distance look roughly the same between different income levels, however the distance for low-income students appears to have more variability. There might be one outlier in the log of distance for high-income students.
 
 ## Multiple linear regression analysis:
 
@@ -85,7 +82,7 @@ CollegeDistance2 <- CollegeDistance |>
 
 ### Full versus reduced model
 
-Examining full model to choose variables to include in reduced model. In the reduced model, I will include the variables that R marks with one or more stars to indicate significant p values.
+Examining full model to choose variables to include in reduced model. In the reduced model, I will include the variables that R marks with one or more stars to indicate significant p-values.
 
 ```{r}
 
@@ -97,16 +94,16 @@ mlr2 = lm(score ~ gender + ethnicity + fcollege + mcollege + home + urban + unem
 summary(mlr2)
 ```
 
-#### Testing to make sure that the reduced model explains score roughly as well as the full model
+#### Testing to make sure that the reduced model explains score roughly as well as the full model:
 
-Gathering anova data
+Gathering ANOVA data:
 
 ```{r}
 anova(mlr1)
 anova(mlr2)
 ```
 
-Assigning values to relevant parts of anova data:
+Assigning values to relevant parts of ANOVA data:
 
 ```{r}
 full_SSE <- 237079
@@ -124,13 +121,13 @@ F_stat <- (ExtraSS / (p-q)) / (full_SSE / (n-p))
 F_stat
 ```
 
-Calculating p value:
+Calculating p-value:
 
 ```{r}
 anova(mlr1,mlr2)
 ```
 
-The p value (0.05692) is greater than 0.05, so we fail to reject that the reduced model is roughly as accurate as the full one for predicting score. However, it is barely over 0.05, we can proceed with the reduced model but we should proceed with caution.
+The p-value (0.05692) is greater than 0.05, so we fail to reject that the reduced model is roughly as accurate as the full one for predicting score. However, it is barely over 0.05, we can proceed with the reduced model but we should proceed with caution.
 
 Credit to <https://www.statology.org/how-to-calculate-the-p-value-of-an-f-statistic-in-r/> for reference.
 
@@ -256,14 +253,14 @@ mlr3 = lm(score ~ gender + ethnicity + fcollege + mcollege + home + urban  + wag
 summary(mlr3)
 ```
 
-Now I will run the anova test to make sure that the model without employment has not lost much accuracy.
+Now I will run the ANOVA test to make sure that the model without employment has not lost much accuracy.
 
 ```{r}
 anova(mlr2)
 anova(mlr3)
 ```
 
-Assigning the Anova output to the different components of the F test:
+Assigning the ANOVA output to the different components of the F test:
 
 ```{r}
 SSE1 <- 237540
@@ -281,13 +278,13 @@ F_stat2 <- (ExtraSS2 / (p2-q2)) / (SSE1 / (n-p2))
 F_stat2
 ```
 
-Calculating the p value:
+Calculating the p-value:
 
 ```{r}
 anova(mlr2, mlr3)
 ```
 
-Since the p value (0.08734) is greater than 0.05, we fail to reject the claim that the original reduced model is much more accurate than the model without income. So, we can go ahead and drop income from our model.
+Since the p-value (0.08734) is greater than 0.05, we fail to reject the claim that the original reduced model is much more accurate than the model without income. So, we can go ahead and drop income from our model.
 
 Here is our final model and summary statistics:
 
@@ -309,7 +306,7 @@ Presumably many people in the "Other" category would be classified as White if t
 
 The next largest t score was gender, with a t score of 5.25. Like race, this speaks to the gender disparities in our education system and society. Additionally, the fact that the second and third greatest determinant of student success were race and gender, respectively, speaks to the continued work that needs to be done to ensure that there truly is liberty and justice for all.
 
-Other factors that influence student success, in order of magnitude, are the increase in a students scores if their mother went to college (t score 4.19), the decrease in their scores if their distance from college is greater (t score -4.15), the increase their scores if their father went to college (t score 3.04), the increase in their scores if their average state 4-year college tuition was higher (t score 2.87), the increase in their scores if their family owns their own home (t score 2.57), the increase in their scores if the manufacturing wage in their state is higher (t score 2.47), and the decrease in their scores if the student lives in an urban area (t score of -2.15). The p value for unemployment (0.087) was greater than 0.05, so I wouldn't say it had a very significant impact.
+Other factors that influence student success, in order of magnitude, are the increase in a students scores if their mother went to college (t score 4.19), the decrease in their scores if their distance from college is greater (t score -4.15), the increase their scores if their father went to college (t score 3.04), the increase in their scores if their average state 4-year college tuition was higher (t score 2.87), the increase in their scores if their family owns their own home (t score 2.57), the increase in their scores if the manufacturing wage in their state is higher (t score 2.47), and the decrease in their scores if the student lives in an urban area (t score of -2.15). The p-value for unemployment (0.087) was greater than 0.05, so I wouldn't say it had a very significant impact.
 
 The model also has an extremely high F statistic of 201, indicating that it is extremely likely that there is a relationship between the combination of influences and student test scores.
 

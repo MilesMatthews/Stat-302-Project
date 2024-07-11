@@ -1,7 +1,7 @@
 # Stat-302-Project
 This project is based on my parts of a group research project investigating variables affecting student test scores. 
 
-You can see an Word doc with the output of my code, and my commentary, at my [.docx file for Stat-302 project.]([https://github.com/MilesMatthews/Stat-302-Project/blob/main/Stat-302-Project-Github.docx]). (Click "View Raw" on the page.)
+You can see an Word doc with the output of my code, and my commentary, at my [.docx file for Stat-302 project.]([https://github.com/MilesMatthews/Stat-302-Project/blob/main/Stat-302-Project-Github.docx]) (Click "View Raw" on the page.)
 
 
 This repository is based on my work for a larger group project conducted for my intermediate statistics class. I have updated it as I have increased my statistics education. The project was assigned by my professor [Professor Zeynep Kacar](https://www.american.edu/cas/faculty/kacar.cfm) who gave us instructions and guidance on choosing a dataset, doing exploratory analysis, and then carrying out several statistical tests, including checking assumptions for those tests. We conducted this process to answer our research question: how do the factors in the dataset influence students’ test scores? The other members of my group were Yasmine Jaffier, [Natalie Tsuei](https://github.com/natalietsuei), and Kristina He. I included the parts of the project that I completed. I included explanations and commentary throughout the code for my project. 

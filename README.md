@@ -1,5 +1,5 @@
 # Stat-302-Project
-This project is based on my parts of a group research project investigating variables affecting student test scores. 
+This project is based on my parts of a group research project investigating variables affecting student test scores. It is one of my earlier sophomore year projects.
 
 You can see a Word doc with the output of my code, and my commentary, at my [.docx file for Stat-302 project.](https://github.com/MilesMatthews/Stat-302-Project/blob/main/Stat-302-Project-Github.docx) (Click "View Raw" on the page.)
 
